@@ -3,6 +3,7 @@ const router     = express.Router()
 const bcrypt     = require("bcrypt")
 const User       = require('../models/User')
 
+// Create user
 router.post("/", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -20,6 +21,7 @@ router.post("/", async (req, res) => {
   }
 })
 
+// User login
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email })
   if (!user) {
@@ -37,6 +39,7 @@ router.post("/login", async (req, res) => {
   }
 })
 
+// Delete user
 router.delete("/", async (req, res) => {
   const user = await User.findOne({ email: req.body.email })
   if (!user) {
