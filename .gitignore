@@ -1,0 +1,7 @@
+### dependencies
+node_modules
+lib
+.vscode
+**/.DS_Store
+.env
+request.rest
