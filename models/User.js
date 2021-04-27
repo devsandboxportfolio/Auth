@@ -12,7 +12,8 @@ const UserSchema = mongoose.Schema({
     required: true
   },
   firstName: String,
-  lastName: String
+  lastName: String,
+  refreshToken: String
 }, {
   timestamps: true
 })
