@@ -1,7 +1,14 @@
-const User = require('../models/User')
+const User   = require('../models/User')
 const bcrypt = require('bcrypt')
-const jwt        = require('jsonwebtoken')
-const { generateAccessToken, generateRefreshToken } = require('../auth')
+const jwt    = require('jsonwebtoken')
+
+const generateAccessToken = (user) => {
+  return jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' })
+}
+
+const generateRefreshToken = (user) => {
+  return jwt.sign({ userId: user._id }, process.env.REFRESH_TOKEN_SECRET)
+}
 
 // Create user
 exports.create = async (req, res) => {
