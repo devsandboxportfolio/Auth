@@ -59,7 +59,7 @@ exports.login = async (req, res) => {
         }}
       ).
       then(() => {
-        res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken})
+        res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken, expiresAt: new Date().getTime() + 10*60000 })
       }).
       catch((err) => {
         res.status(500).send(err)
@@ -110,7 +110,7 @@ exports.getAccessToken = async (req, res) => {
     }
 
     const accessToken = generateAccessToken(user)
-    res.json({ accessToken: accessToken })
+    res.json({ accessToken: accessToken, expiresAt: new Date().getTime() + 10*60000 })
   })
 }
 
